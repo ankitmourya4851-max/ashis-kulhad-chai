@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7A2E0E">
+<title>Ashis Kulhad Chai | Bareilly</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#fff7e6;margin:0;color:#321b10}
+.header{background:linear-gradient(135deg,#7a2e0e,#a94b18);color:#fff;padding:28px 18px;text-align:center}
+.header h1{font-size:30px;margin:0 0 8px}
+.header p{margin:7px 0;line-height:1.45}
+.wrap{max-width:650px;margin:auto;padding:18px}
+h2.section{color:#7a2e0e;text-align:center}
+.item{background:#fff;border:1px solid #e8c9a0;border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 3px 10px #6b3b1712}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.item h3{margin:0 0 6px;font-size:19px}
+.item p{margin:0;color:#76665b;font-size:14px}
+.price{font-weight:bold;color:#a74712;font-size:20px;white-space:nowrap}
+.controls{display:flex;align-items:center;gap:10px;margin-top:13px}
+.controls button{width:36px;height:36px;border:0;border-radius:50%;background:#7a2e0e;color:white;font-size:21px;cursor:pointer}
+.qty{min-width:20px;text-align:center;font-weight:bold}
+.total{background:#fff;border:2px solid #e8c9a0;border-radius:16px;padding:16px;text-align:center;margin:18px 0;font-size:21px;font-weight:bold}
+.action{display:block;text-decoration:none;text-align:center;background:#25d366;color:white;padding:15px;border-radius:30px;font-size:17px;font-weight:bold;margin:12px 0}
+.map{background:#4285f4}
+.note{text-align:center;color:#6d5b4f;font-size:14px;line-height:1.6}
+footer{text-align:center;padding:18px;color:#78685d;font-size:13px}
+</style>
+</head>
+<body>
+<header class="header">
+  <h1>ASHIS KULHAD CHAI</h1>
+  <p><b>Desi Swad, Kulhad Mein Chai ☕</b></p>
+  <p>Noori Road, Karamchari Nagar,<br>Near Canara Bank, Mini Bypass,<br>Bareilly - 243122</p>
+  <p>Call / WhatsApp: <b>7983211194</b></p>
+</header>
+
+<main class="wrap">
+  <h2 class="section">Hamare Menu Se Order Karein</h2>
+  <div class="item" data-name="Kulhad Chai" data-price="20">
+    <div class="row"><div><h3>Kulhad Chai</h3><p>Garam, kadak, mitti ki khushboo</p></div><div class="price">₹20</div></div>
+    <div class="controls"><button onclick="changeQty(this,-1)" aria-label="Decrease">−</button><span class="qty">0</span><button onclick="changeQty(this,1)" aria-label="Increase">+</button></div>
+  </div>
+  <div class="item" data-name="Special Kulhad Chai" data-price="30">
+    <div class="row"><div><h3>Special Kulhad Chai</h3><p>Adrak aur elaichi wali special chai</p></div><div class="price">₹30</div></div>
+    <div class="controls"><button onclick="changeQty(this,-1)" aria-label="Decrease">−</button><span class="qty">0</span><button onclick="changeQty(this,1)" aria-label="Increase">+</button></div>
+  </div>
+  <div class="item" data-name="Papdi" data-price="60">
+    <div class="row"><div><h3>Papdi</h3><p>Crispy aur chatpati</p></div><div class="price">₹60</div></div>
+    <div class="controls"><button onclick="changeQty(this,-1)" aria-label="Decrease">−</button><span class="qty">0</span><button onclick="changeQty(this,1)" aria-label="Increase">+</button></div>
+  </div>
+  <div class="item" data-name="Biscuit / Namkeen" data-price="20">
+    <div class="row"><div><h3>Biscuit / Namkeen</h3><p>Chai ke saath halka nashta</p></div><div class="price">₹20</div></div>
+    <div class="controls"><button onclick="changeQty(this,-1)" aria-label="Decrease">−</button><span class="qty">0</span><button onclick="changeQty(this,1)" aria-label="Increase">+</button></div>
+  </div>
+
+  <div class="form-card">
+    <h3>Delivery / Pickup Details</h3>
+    <div class="field">
+      <label for="customerName">नाम</label>
+      <input id="customerName" type="text" placeholder="अपना नाम लिखें">
+    </div>
+    <div class="field">
+      <label for="customerPhone">मोबाइल नंबर</label>
+      <input id="customerPhone" type="tel" inputmode="numeric" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर">
+      <div class="hint">7983211194 नंबर डालने पर सेव किया हुआ पता अपने-आप भर जाएगा।</div>
+    </div>
+    <div class="field">
+      <label for="customerAddress">पूरा पता</label>
+      <textarea id="customerAddress" placeholder="घर/दुकान का पूरा पता लिखें"></textarea>
+      <div id="addressStatus" class="status">✓ पता अपने-आप भर दिया गया है।</div>
+    </div>
+  </div>
+
+  <div class="total">Total: <span id="total">₹0</span></div>
+  <a class="action" id="order" href="https://wa.me/917983211194" target="_blank" rel="noopener">WhatsApp Par Order Karein</a>
+  <a class="action map" href="https://www.google.com/maps/search/?api=1&query=Noori%20Road%2C%20Karamchari%20Nagar%2C%20Near%20Canara%20Bank%2C%20Mini%20Bypass%2C%20Bareilly%20243122" target="_blank" rel="noopener">Google Maps Par Dukaan Dekhein</a>
+  <p class="note">Phone: 7983211194<br>Kripya order bhejne ke baad WhatsApp par delivery/pickup confirm kar lein.<br>Timing: Subah 7 baje se raat 10 baje tak</p>
+</main>
+<footer>© Ashis Kulhad Chai · Bareilly</footer>
+
+<script>
+function changeQty(button, change){
+  const item=button.closest('.item');
+  const qtyEl=item.querySelector('.qty');
+  const qty=Math.max(0, Number(qtyEl.textContent)+change);
+  qtyEl.textContent=qty;
+  updateOrder();
+}
+function updateOrder(){
+  let total=0, lines=[];
+  document.querySelectorAll('.item').forEach(item=>{
+    const qty=Number(item.querySelector('.qty').textContent);
+    const price=Number(item.dataset.price);
+    if(qty>0){
+      total+=qty*price;
+      lines.push(`${item.dataset.name} x ${qty} = ₹${qty*price}`);
+    }
+  });
+  document.getElementById('total').textContent='₹'+total;
+
+  const name=document.getElementById('customerName').value.trim();
+  const phone=document.getElementById('customerPhone').value.trim();
+  const address=document.getElementById('customerAddress').value.trim();
+
+  const details=[
+    name ? 'नाम: '+name : '',
+    phone ? 'मोबाइल: '+phone : '',
+    address ? 'पता: '+address : ''
+  ].filter(Boolean);
+
+  const message=lines.length
+    ? 'Namaste! Ashis Kulhad Chai se mera order:%0A'+encodeURIComponent(lines.join('\n'))+'%0Aकुल Total: ₹'+total+
+      (details.length ? '%0A%0A'+encodeURIComponent(details.join('\n')) : '')
+    : 'Namaste! Mujhe Ashis Kulhad Chai ka menu chahiye.'+
+      (details.length ? '%0A%0A'+encodeURIComponent(details.join('\n')) : '');
+
+  document.getElementById('order').href='https://wa.me/917983211194?text='+message;
+}
+
+function autoFillAddress(){
+  const phone=document.getElementById('customerPhone').value.replace(/\D/g,'');
+  const address=document.getElementById('customerAddress');
+  const status=document.getElementById('addressStatus');
+
+  if(phone === '7983211194'){
+    address.value='Noori Road, Karamchari Nagar, Near Canara Bank, Mini Bypass, Bareilly - 243122';
+    status.style.display='block';
+  }else{
+    if(address.value === 'Noori Road, Karamchari Nagar, Near Canara Bank, Mini Bypass, Bareilly - 243122'){
+      address.value='';
+    }
+    status.style.display='none';
+  }
+  updateOrder();
+}
+
+document.getElementById('customerPhone').addEventListener('input', autoFillAddress);
+document.getElementById('customerName').addEventListener('input', updateOrder);
+document.getElementById('customerAddress').addEventListener('input', updateOrder);
+</script>
+</body>
+</html>
